@@ -2366,7 +2366,7 @@ module.exports = {
 
 /***/ }),
 
-/***/ 613:
+/***/ 189:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2508,19 +2508,19 @@ module.exports = function (i) {
 
 /***/ }),
 
-/***/ 418:
+/***/ 681:
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(613);
+var content = __webpack_require__(189);
 if(content.__esModule) content = content.default;
 if(typeof content === 'string') content = [[module.id, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
 var add = (__webpack_require__(402)/* ["default"] */ .Z)
-var update = add("5a856de6", content, true, {"sourceMap":false,"shadowMode":false});
+var update = add("4624a544", content, true, {"sourceMap":false,"shadowMode":false});
 
 /***/ }),
 
@@ -2934,7 +2934,7 @@ if (typeof window !== 'undefined') {
 // Indicate to webpack that this file can be concatenated
 /* harmony default export */ var setPublicPath = (null);
 
-;// CONCATENATED MODULE: ./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib/index.js??clonedRuleSet-40.use[1]!./node_modules/@vue/vue-loader-v15/lib/loaders/templateLoader.js??ruleSet[1].rules[3]!./node_modules/@vue/vue-loader-v15/lib/index.js??vue-loader-options!./src/App.vue?vue&type=template&id=214adab0&
+;// CONCATENATED MODULE: ./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib/index.js??clonedRuleSet-40.use[1]!./node_modules/@vue/vue-loader-v15/lib/loaders/templateLoader.js??ruleSet[1].rules[3]!./node_modules/@vue/vue-loader-v15/lib/index.js??vue-loader-options!./src/App.vue?vue&type=template&id=7aa64632&
 var render = function render() {
   var _vm = this,
       _c = _vm._self._c;
@@ -2948,17 +2948,13 @@ var render = function render() {
     staticClass: "row"
   }, [_c('div', {
     staticClass: "col-12"
-  }, [_c('ChargesList')], 1)]), _c('div', {
-    staticClass: "row"
-  }, [_c('div', {
-    staticClass: "col-12"
-  }, [_c('ChargeModal')], 1)])]);
+  }, [_c('ChargesComponent')], 1)])]);
 };
 
 var staticRenderFns = [];
 
-;// CONCATENATED MODULE: ./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib/index.js??clonedRuleSet-40.use[1]!./node_modules/@vue/vue-loader-v15/lib/loaders/templateLoader.js??ruleSet[1].rules[3]!./node_modules/@vue/vue-loader-v15/lib/index.js??vue-loader-options!./src/components/ChargesList.vue?vue&type=template&id=a7395e5a&scoped=true&
-var ChargesListvue_type_template_id_a7395e5a_scoped_true_render = function render() {
+;// CONCATENATED MODULE: ./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib/index.js??clonedRuleSet-40.use[1]!./node_modules/@vue/vue-loader-v15/lib/loaders/templateLoader.js??ruleSet[1].rules[3]!./node_modules/@vue/vue-loader-v15/lib/index.js??vue-loader-options!./src/components/ChargesComponent.vue?vue&type=template&id=f212803e&scoped=true&
+var ChargesComponentvue_type_template_id_f212803e_scoped_true_render = function render() {
   var _vm = this,
       _c = _vm._self._c;
 
@@ -2984,191 +2980,20 @@ var ChargesListvue_type_template_id_a7395e5a_scoped_true_render = function rende
     return _c('tr', {
       key: config.id
     }, [_c('td', [_vm._v(_vm._s(config.id))]), _c('td', [_vm._v(_vm._s(config.project_id))]), _c('td', [_vm._v(_vm._s(config.module_prefix))]), _c('td', [_vm._v(_vm._s(config.is_recurring))]), _c('td', [_vm._v(_vm._s(config.amount))]), _c('td', [_vm._v(_vm._s(config.notes))])]);
-  }), 0)])]);
-};
-
-var ChargesListvue_type_template_id_a7395e5a_scoped_true_staticRenderFns = [function () {
-  var _vm = this,
-      _c = _vm._self._c;
-
-  return _c('thead', [_c('tr', [_c('th', [_vm._v("#")]), _c('th', [_vm._v("Project")]), _c('th', [_vm._v("External Module")]), _c('th', [_vm._v("Is Recurring")]), _c('th', [_vm._v("Amount")]), _c('th', [_vm._v("Notes")])])]);
-}];
-
-;// CONCATENATED MODULE: ./src/components/ChargesList.vue?vue&type=template&id=a7395e5a&scoped=true&
-
-// EXTERNAL MODULE: ./node_modules/axios/index.js
-var axios = __webpack_require__(669);
-var axios_default = /*#__PURE__*/__webpack_require__.n(axios);
-;// CONCATENATED MODULE: ./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib/index.js??clonedRuleSet-40.use[1]!./node_modules/@vue/vue-loader-v15/lib/index.js??vue-loader-options!./src/components/ChargesList.vue?vue&type=script&lang=js&
-
-/* harmony default export */ var ChargesListvue_type_script_lang_js_ = ({
-  name: "ChargesList",
-  methods: {
-    prepareComponent: function () {
-      this.loadConfigList();
-    },
-    loadConfigList: function () {
-      var action = 'get_charges';
-      axios_default().get(window.ajaxURL + '&action=' + action).then(response => {
-        this.list = response.data;
-      }).catch(err => {
-        this.showError = true;
-        this.errorMessage = err.response.data.message;
-      });
-    }
-  },
-
-  data() {
-    return {
-      list: [],
-      errorMessage: '',
-      showError: false
-    };
-  },
-
-  mounted() {
-    this.prepareComponent();
-  }
-
-});
-;// CONCATENATED MODULE: ./src/components/ChargesList.vue?vue&type=script&lang=js&
- /* harmony default export */ var components_ChargesListvue_type_script_lang_js_ = (ChargesListvue_type_script_lang_js_); 
-;// CONCATENATED MODULE: ./node_modules/@vue/vue-loader-v15/lib/runtime/componentNormalizer.js
-/* globals __VUE_SSR_CONTEXT__ */
-
-// IMPORTANT: Do NOT use ES2015 features in this file (except for modules).
-// This module is a runtime utility for cleaner component module output and will
-// be included in the final webpack user bundle.
-
-function normalizeComponent(
-  scriptExports,
-  render,
-  staticRenderFns,
-  functionalTemplate,
-  injectStyles,
-  scopeId,
-  moduleIdentifier /* server only */,
-  shadowMode /* vue-cli only */
-) {
-  // Vue.extend constructor export interop
-  var options =
-    typeof scriptExports === 'function' ? scriptExports.options : scriptExports
-
-  // render functions
-  if (render) {
-    options.render = render
-    options.staticRenderFns = staticRenderFns
-    options._compiled = true
-  }
-
-  // functional template
-  if (functionalTemplate) {
-    options.functional = true
-  }
-
-  // scopedId
-  if (scopeId) {
-    options._scopeId = 'data-v-' + scopeId
-  }
-
-  var hook
-  if (moduleIdentifier) {
-    // server build
-    hook = function (context) {
-      // 2.3 injection
-      context =
-        context || // cached call
-        (this.$vnode && this.$vnode.ssrContext) || // stateful
-        (this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext) // functional
-      // 2.2 with runInNewContext: true
-      if (!context && typeof __VUE_SSR_CONTEXT__ !== 'undefined') {
-        context = __VUE_SSR_CONTEXT__
-      }
-      // inject component styles
-      if (injectStyles) {
-        injectStyles.call(this, context)
-      }
-      // register component module identifier for async chunk inferrence
-      if (context && context._registeredComponents) {
-        context._registeredComponents.add(moduleIdentifier)
-      }
-    }
-    // used by ssr in case component is cached and beforeCreate
-    // never gets called
-    options._ssrRegister = hook
-  } else if (injectStyles) {
-    hook = shadowMode
-      ? function () {
-          injectStyles.call(
-            this,
-            (options.functional ? this.parent : this).$root.$options.shadowRoot
-          )
-        }
-      : injectStyles
-  }
-
-  if (hook) {
-    if (options.functional) {
-      // for template-only hot-reload because in that case the render fn doesn't
-      // go through the normalizer
-      options._injectStyles = hook
-      // register for functional component in vue file
-      var originalRender = options.render
-      options.render = function renderWithStyleInjection(h, context) {
-        hook.call(context)
-        return originalRender(h, context)
-      }
-    } else {
-      // inject component registration as beforeCreate hook
-      var existing = options.beforeCreate
-      options.beforeCreate = existing ? [].concat(existing, hook) : [hook]
-    }
-  }
-
-  return {
-    exports: scriptExports,
-    options: options
-  }
-}
-
-;// CONCATENATED MODULE: ./src/components/ChargesList.vue
-
-
-
-
-
-/* normalize component */
-;
-var component = normalizeComponent(
-  components_ChargesListvue_type_script_lang_js_,
-  ChargesListvue_type_template_id_a7395e5a_scoped_true_render,
-  ChargesListvue_type_template_id_a7395e5a_scoped_true_staticRenderFns,
-  false,
-  null,
-  "a7395e5a",
-  null
-  
-)
-
-/* harmony default export */ var ChargesList = (component.exports);
-;// CONCATENATED MODULE: ./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib/index.js??clonedRuleSet-40.use[1]!./node_modules/@vue/vue-loader-v15/lib/loaders/templateLoader.js??ruleSet[1].rules[3]!./node_modules/@vue/vue-loader-v15/lib/index.js??vue-loader-options!./src/components/ChargeModal.vue?vue&type=template&id=0b5b2f98&scoped=true&
-var ChargeModalvue_type_template_id_0b5b2f98_scoped_true_render = function render() {
-  var _vm = this,
-      _c = _vm._self._c;
-
-  return _c('div', [_vm._m(0), _c('div', {
+  }), 0)]), _vm._m(1), _c('div', {
+    ref: "configModal",
     staticClass: "modal fade",
     attrs: {
-      "id": "exampleModal",
+      "id": "configModal",
       "tabindex": "-1",
-      "aria-labelledby": "exampleModalLabel",
+      "aria-labelledby": "configModalLabel",
       "aria-hidden": "true"
     }
   }, [_c('div', {
     staticClass: "modal-dialog"
   }, [_c('div', {
     staticClass: "modal-content"
-  }, [_vm._m(1), _c('div', {
+  }, [_vm._m(2), _c('div', {
     staticClass: "modal-body"
   }, [_c('div', {
     ref: "el",
@@ -3185,12 +3010,11 @@ var ChargeModalvue_type_template_id_0b5b2f98_scoped_true_render = function rende
     }
   }, [_c('div', {
     staticClass: "mb-3"
-  }, [_c('label', {
-    staticClass: "form-label",
-    attrs: {
-      "for": "amount"
-    }
-  }, [_vm._v("Amount")]), _c('input', {
+  }, [_c('div', {
+    staticClass: "row"
+  }, [_vm._m(3), _c('div', {
+    staticClass: "col-9"
+  }, [_c('input', {
     directives: [{
       name: "model",
       rawName: "v-model",
@@ -3213,19 +3037,13 @@ var ChargeModalvue_type_template_id_0b5b2f98_scoped_true_render = function rende
         _vm.$set(_vm.charge, "amount", $event.target.value);
       }
     }
-  }), _c('div', {
-    staticClass: "form-text",
-    attrs: {
-      "id": "amount"
-    }
-  }, [_vm._v("Amount to be charged")])]), _c('div', {
+  })])])]), _c('div', {
     staticClass: "mb-3"
-  }, [_c('label', {
-    staticClass: "form-label",
-    attrs: {
-      "for": "exampleInputEmail1"
-    }
-  }, [_vm._v("Is Recurring?")]), _c('div', {
+  }, [_c('div', {
+    staticClass: "row"
+  }, [_vm._m(4), _c('div', {
+    staticClass: "col-9"
+  }, [_c('div', {
     staticClass: "form-check"
   }, [_c('input', {
     directives: [{
@@ -3284,14 +3102,13 @@ var ChargeModalvue_type_template_id_0b5b2f98_scoped_true_render = function rende
     attrs: {
       "for": "is_recurring2"
     }
-  }, [_vm._v(" No ")])])]), _c('div', {
+  }, [_vm._v(" No ")])])])])]), _c('div', {
     staticClass: "mb-3 form-check"
-  }, [_c('label', {
-    staticClass: "form-label",
-    attrs: {
-      "for": "external-module"
-    }
-  }, [_vm._v("External Module")]), _c('input', {
+  }, [_c('div', {
+    staticClass: "row"
+  }, [_vm._m(5), _c('div', {
+    staticClass: "col-9"
+  }, [_c('input', {
     directives: [{
       name: "model",
       rawName: "v-model",
@@ -3314,14 +3131,13 @@ var ChargeModalvue_type_template_id_0b5b2f98_scoped_true_render = function rende
         _vm.$set(_vm.charge, "module_prefix", $event.target.value);
       }
     }
-  })]), _c('div', {
+  })])])]), _c('div', {
     staticClass: "mb-3"
-  }, [_c('label', {
-    staticClass: "form-label",
-    attrs: {
-      "for": "exampleFormControlTextarea1"
-    }
-  }, [_vm._v("Noes")]), _c('textarea', {
+  }, [_c('div', {
+    staticClass: "row"
+  }, [_vm._m(6), _c('div', {
+    staticClass: "col-9"
+  }, [_c('textarea', {
     directives: [{
       name: "model",
       rawName: "v-model",
@@ -3344,7 +3160,7 @@ var ChargeModalvue_type_template_id_0b5b2f98_scoped_true_render = function rende
         _vm.$set(_vm.charge, "notes", $event.target.value);
       }
     }
-  })])])]), _c('div', {
+  })])])])])]), _c('div', {
     staticClass: "modal-footer"
   }, [_c('button', {
     staticClass: "btn btn-secondary",
@@ -3363,7 +3179,12 @@ var ChargeModalvue_type_template_id_0b5b2f98_scoped_true_render = function rende
   }, [_vm._v("Save changes")])])])])])]);
 };
 
-var ChargeModalvue_type_template_id_0b5b2f98_scoped_true_staticRenderFns = [function () {
+var ChargesComponentvue_type_template_id_f212803e_scoped_true_staticRenderFns = [function () {
+  var _vm = this,
+      _c = _vm._self._c;
+
+  return _c('thead', [_c('tr', [_c('th', [_vm._v("#")]), _c('th', [_vm._v("Project")]), _c('th', [_vm._v("External Module")]), _c('th', [_vm._v("Is Recurring")]), _c('th', [_vm._v("Amount")]), _c('th', [_vm._v("Notes")])])]);
+}, function () {
   var _vm = this,
       _c = _vm._self._c;
 
@@ -3376,7 +3197,7 @@ var ChargeModalvue_type_template_id_0b5b2f98_scoped_true_staticRenderFns = [func
     attrs: {
       "type": "button",
       "data-bs-toggle": "modal",
-      "data-bs-target": "#exampleModal"
+      "data-bs-target": "#configModal"
     }
   }, [_vm._v(" Add Custom Charge ")])])]);
 }, function () {
@@ -3398,10 +3219,61 @@ var ChargeModalvue_type_template_id_0b5b2f98_scoped_true_staticRenderFns = [func
       "aria-label": "Close"
     }
   })]);
+}, function () {
+  var _vm = this,
+      _c = _vm._self._c;
+
+  return _c('div', {
+    staticClass: "col-3"
+  }, [_c('label', {
+    staticClass: "form-label",
+    attrs: {
+      "for": "amount"
+    }
+  }, [_vm._v("Amount")])]);
+}, function () {
+  var _vm = this,
+      _c = _vm._self._c;
+
+  return _c('div', {
+    staticClass: "col-3"
+  }, [_c('label', {
+    staticClass: "form-label",
+    attrs: {
+      "for": "exampleInputEmail1"
+    }
+  }, [_vm._v("Is Recurring?")])]);
+}, function () {
+  var _vm = this,
+      _c = _vm._self._c;
+
+  return _c('div', {
+    staticClass: "col-3"
+  }, [_c('label', {
+    staticClass: "form-label",
+    attrs: {
+      "for": "external-module"
+    }
+  }, [_vm._v("External Module")])]);
+}, function () {
+  var _vm = this,
+      _c = _vm._self._c;
+
+  return _c('div', {
+    staticClass: "col-3"
+  }, [_c('label', {
+    staticClass: "form-label",
+    attrs: {
+      "for": "exampleFormControlTextarea1"
+    }
+  }, [_vm._v("Noes")])]);
 }];
 
-;// CONCATENATED MODULE: ./src/components/ChargeModal.vue?vue&type=template&id=0b5b2f98&scoped=true&
+;// CONCATENATED MODULE: ./src/components/ChargesComponent.vue?vue&type=template&id=f212803e&scoped=true&
 
+// EXTERNAL MODULE: ./node_modules/axios/index.js
+var axios = __webpack_require__(669);
+var axios_default = /*#__PURE__*/__webpack_require__.n(axios);
 ;// CONCATENATED MODULE: ./node_modules/@popperjs/core/lib/enums.js
 var enums_top = 'top';
 var bottom = 'bottom';
@@ -10651,17 +10523,54 @@ defineJQueryPlugin(Toast);
 
 //# sourceMappingURL=bootstrap.esm.js.map
 
-;// CONCATENATED MODULE: ./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib/index.js??clonedRuleSet-40.use[1]!./node_modules/@vue/vue-loader-v15/lib/index.js??vue-loader-options!./src/components/ChargeModal.vue?vue&type=script&lang=js&
+;// CONCATENATED MODULE: ./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib/index.js??clonedRuleSet-40.use[1]!./node_modules/@vue/vue-loader-v15/lib/index.js??vue-loader-options!./src/components/ChargesComponent.vue?vue&type=script&lang=js&
 
 
-/* harmony default export */ var ChargeModalvue_type_script_lang_js_ = ({
-  name: "ConfigModal",
+/* harmony default export */ var ChargesComponentvue_type_script_lang_js_ = ({
+  name: "ChargesComponent",
+  methods: {
+    prepareComponent: function () {
+      this.loadConfigList();
+    },
+    loadConfigList: function () {
+      var action = 'get_charges';
+      axios_default().get(window.ajaxURL + '&action=' + action).then(response => {
+        this.list = response.data;
+      }).catch(err => {
+        this.showError = true;
+
+        if (err.response !== undefined) {
+          this.errorMessage = err.response.data.message;
+        } else {
+          this.errorMessage = err;
+        }
+      });
+    },
+    saveCharge: function () {
+      var data = this.charge;
+      data['redcap_csrf_token'] = window.csrf_token;
+      axios_default().post(window.ajaxURL + '&action=save_charge', data).then(() => {
+        this.modal.hide();
+        this.loadConfigList();
+      }).catch(err => {
+        console.log(err);
+        this.showError = true;
+
+        if (err.response !== undefined) {
+          this.errorMessage = err.response.data.message;
+        } else {
+          this.errorMessage = err;
+        }
+      });
+    }
+  },
 
   data() {
     return {
-      modal: null,
+      list: [],
       errorMessage: '',
       showError: false,
+      modal: null,
       charge: {
         amount: '',
         is_recurring: false,
@@ -10671,28 +10580,113 @@ defineJQueryPlugin(Toast);
     };
   },
 
-  methods: {
-    saveCharge: function () {
-      var data = this.charge;
-      axios_default().get(window.ajaxURL + '&action=save_charge', {
-        params: data
-      }).then(response => {
-        console.log(response);
-      }).catch(err => {
-        this.showError = true;
-        this.errorMessage = err.response.data.message;
-      });
-    }
-  },
-
   mounted() {
-    this.modal = new Modal(this.$refs.exampleModal);
+    this.prepareComponent();
+    this.modal = new Modal(this.$refs.configModal);
   }
 
 });
-;// CONCATENATED MODULE: ./src/components/ChargeModal.vue?vue&type=script&lang=js&
- /* harmony default export */ var components_ChargeModalvue_type_script_lang_js_ = (ChargeModalvue_type_script_lang_js_); 
-;// CONCATENATED MODULE: ./src/components/ChargeModal.vue
+;// CONCATENATED MODULE: ./src/components/ChargesComponent.vue?vue&type=script&lang=js&
+ /* harmony default export */ var components_ChargesComponentvue_type_script_lang_js_ = (ChargesComponentvue_type_script_lang_js_); 
+;// CONCATENATED MODULE: ./node_modules/@vue/vue-loader-v15/lib/runtime/componentNormalizer.js
+/* globals __VUE_SSR_CONTEXT__ */
+
+// IMPORTANT: Do NOT use ES2015 features in this file (except for modules).
+// This module is a runtime utility for cleaner component module output and will
+// be included in the final webpack user bundle.
+
+function normalizeComponent(
+  scriptExports,
+  render,
+  staticRenderFns,
+  functionalTemplate,
+  injectStyles,
+  scopeId,
+  moduleIdentifier /* server only */,
+  shadowMode /* vue-cli only */
+) {
+  // Vue.extend constructor export interop
+  var options =
+    typeof scriptExports === 'function' ? scriptExports.options : scriptExports
+
+  // render functions
+  if (render) {
+    options.render = render
+    options.staticRenderFns = staticRenderFns
+    options._compiled = true
+  }
+
+  // functional template
+  if (functionalTemplate) {
+    options.functional = true
+  }
+
+  // scopedId
+  if (scopeId) {
+    options._scopeId = 'data-v-' + scopeId
+  }
+
+  var hook
+  if (moduleIdentifier) {
+    // server build
+    hook = function (context) {
+      // 2.3 injection
+      context =
+        context || // cached call
+        (this.$vnode && this.$vnode.ssrContext) || // stateful
+        (this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext) // functional
+      // 2.2 with runInNewContext: true
+      if (!context && typeof __VUE_SSR_CONTEXT__ !== 'undefined') {
+        context = __VUE_SSR_CONTEXT__
+      }
+      // inject component styles
+      if (injectStyles) {
+        injectStyles.call(this, context)
+      }
+      // register component module identifier for async chunk inferrence
+      if (context && context._registeredComponents) {
+        context._registeredComponents.add(moduleIdentifier)
+      }
+    }
+    // used by ssr in case component is cached and beforeCreate
+    // never gets called
+    options._ssrRegister = hook
+  } else if (injectStyles) {
+    hook = shadowMode
+      ? function () {
+          injectStyles.call(
+            this,
+            (options.functional ? this.parent : this).$root.$options.shadowRoot
+          )
+        }
+      : injectStyles
+  }
+
+  if (hook) {
+    if (options.functional) {
+      // for template-only hot-reload because in that case the render fn doesn't
+      // go through the normalizer
+      options._injectStyles = hook
+      // register for functional component in vue file
+      var originalRender = options.render
+      options.render = function renderWithStyleInjection(h, context) {
+        hook.call(context)
+        return originalRender(h, context)
+      }
+    } else {
+      // inject component registration as beforeCreate hook
+      var existing = options.beforeCreate
+      options.beforeCreate = existing ? [].concat(existing, hook) : [hook]
+    }
+  }
+
+  return {
+    exports: scriptExports,
+    options: options
+  }
+}
+
+;// CONCATENATED MODULE: ./src/components/ChargesComponent.vue
 
 
 
@@ -10700,33 +10694,31 @@ defineJQueryPlugin(Toast);
 
 /* normalize component */
 ;
-var ChargeModal_component = normalizeComponent(
-  components_ChargeModalvue_type_script_lang_js_,
-  ChargeModalvue_type_template_id_0b5b2f98_scoped_true_render,
-  ChargeModalvue_type_template_id_0b5b2f98_scoped_true_staticRenderFns,
+var component = normalizeComponent(
+  components_ChargesComponentvue_type_script_lang_js_,
+  ChargesComponentvue_type_template_id_f212803e_scoped_true_render,
+  ChargesComponentvue_type_template_id_f212803e_scoped_true_staticRenderFns,
   false,
   null,
-  "0b5b2f98",
+  "f212803e",
   null
   
 )
 
-/* harmony default export */ var ChargeModal = (ChargeModal_component.exports);
+/* harmony default export */ var ChargesComponent = (component.exports);
 ;// CONCATENATED MODULE: ./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib/index.js??clonedRuleSet-40.use[1]!./node_modules/@vue/vue-loader-v15/lib/index.js??vue-loader-options!./src/App.vue?vue&type=script&lang=js&
-
 
 /* harmony default export */ var Appvue_type_script_lang_js_ = ({
   name: 'App',
   components: {
-    ChargesList: ChargesList,
-    ChargeModal: ChargeModal
+    ChargesComponent: ChargesComponent
   }
 });
 ;// CONCATENATED MODULE: ./src/App.vue?vue&type=script&lang=js&
  /* harmony default export */ var src_Appvue_type_script_lang_js_ = (Appvue_type_script_lang_js_); 
-// EXTERNAL MODULE: ./node_modules/vue-style-loader/index.js??clonedRuleSet-12.use[0]!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-12.use[1]!./node_modules/@vue/vue-loader-v15/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-12.use[2]!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-12.use[3]!./node_modules/@vue/vue-loader-v15/lib/index.js??vue-loader-options!./src/App.vue?vue&type=style&index=0&id=214adab0&prod&lang=css&
-var Appvue_type_style_index_0_id_214adab0_prod_lang_css_ = __webpack_require__(418);
-;// CONCATENATED MODULE: ./src/App.vue?vue&type=style&index=0&id=214adab0&prod&lang=css&
+// EXTERNAL MODULE: ./node_modules/vue-style-loader/index.js??clonedRuleSet-12.use[0]!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-12.use[1]!./node_modules/@vue/vue-loader-v15/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-12.use[2]!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-12.use[3]!./node_modules/@vue/vue-loader-v15/lib/index.js??vue-loader-options!./src/App.vue?vue&type=style&index=0&id=7aa64632&prod&lang=css&
+var Appvue_type_style_index_0_id_7aa64632_prod_lang_css_ = __webpack_require__(681);
+;// CONCATENATED MODULE: ./src/App.vue?vue&type=style&index=0&id=7aa64632&prod&lang=css&
 
 ;// CONCATENATED MODULE: ./src/App.vue
 

@@ -3,7 +3,7 @@
     "namespace": "Stanford\\CustomCharges",
     "description": "A template for a REDCap External Module",
     "documentation": "README.md",
-    "framework-version": 9,
+    "framework-version": 7,
     "authors": [
         {
             "name": "Andrew Martin",
@@ -35,7 +35,6 @@
     },
 
 	"no-auth-pages": [
-        "ajax/handle"
 	],
 
 	"project-settings": [
