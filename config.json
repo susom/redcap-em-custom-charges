@@ -43,23 +43,27 @@
 			"name": "<b>Enable Debug Logging</b><br><i>(optional)</i> Requires installation and configuration of emLogger",
 			"required": false,
 			"type": "checkbox"
-		}
-	],
-
-
-	"system-settings": [
-		{
-			"key": "enable-system-debug-logging",
-			"name": "<b>Enable Debug Logging (system-wide)</b><i>(optional)</i> Requires installation and configuration of emLogger",
-			"required": false,
-			"type": "checkbox"
-		}
-	],
-
-	"compatibility": {
-		"php-version-min": "",
-		"php-version-max": "",
-		"redcap-version-min": "",
-		"redcap-version-max": ""
-	}
+        }
+    ],
+    "system-settings": [
+        {
+            "key": "enable-system-debug-logging",
+            "name": "<b>Enable Debug Logging (system-wide)</b><i>(optional)</i> Requires installation and configuration of emLogger",
+            "required": false,
+            "type": "checkbox"
+        },
+        {
+            "key": "em-project-id",
+            "name": "Project contains EM records",
+            "required": true,
+            "default": "16000",
+            "type": "text"
+        }
+    ],
+    "compatibility": {
+        "php-version-min": "",
+        "php-version-max": "",
+        "redcap-version-min": "",
+        "redcap-version-max": ""
+    }
 }

@@ -88,9 +88,12 @@
                                     <div class="col-3"><label for="external-module" class="form-label">External
                                         Module</label>
                                     </div>
-                                    <div class="col-9"><input type="text" class="form-control"
-                                                              v-model="charge.module_prefix"
-                                                              id="external-module" aria-describedby="external-module">
+                                    <div class="col-9">
+                                        <select name="module_prefix" v-model="charge.module_prefix">
+                                            <option v-for="item in this.modules_list" :key="item.prefix"
+                                                    :value="item.prefix">{{ item.name }}
+                                            </option>
+                                        </select>
                                     </div>
                                 </div>
 
@@ -126,12 +129,12 @@ export default {
     name: "ChargesComponent",
     methods: {
         prepareComponent: function () {
-            this.loadConfigList()
+            this.loadChargesList()
+            this.loadModulesPrefixes()
         },
-        loadConfigList: function () {
-            var action = 'get_charges'
-            axios.get(window.ajaxURL + '&action=' + action).then(response => {
-                this.list = response.data
+        loadModulesPrefixes: function () {
+            axios.get(window.ajaxURL + '&action=' + window.MODULE_LIST).then(response => {
+                this.modules_list = response.data.records
             }).catch(err => {
                 this.showError = true
                 if (err.response !== undefined) {
@@ -141,12 +144,38 @@ export default {
                 }
             });
         },
+        loadChargesList: function () {
+            axios.get(window.ajaxURL + '&action=' + window.GET_CHARGES).then(response => {
+                this.list = response.data.records
+            }).catch(err => {
+                this.showError = true
+                if (err.response !== undefined) {
+                    this.errorMessage = err.response.data.message
+                } else {
+                    this.errorMessage = err
+                }
+            });
+        },
+        deleteCharge: function () {
+            if (confirm('Are you sure you want to delete this Charge?')) {
+                axios.get(window.ajaxURL + '&action=' + window.DELETE_CHARGE).then(response => {
+                    this.list = response.data.records
+                }).catch(err => {
+                    this.showError = true
+                    if (err.response !== undefined) {
+                        this.errorMessage = err.response.data.message
+                    } else {
+                        this.errorMessage = err
+                    }
+                });
+            }
+        },
         saveCharge: function () {
             var data = this.charge
             data['redcap_csrf_token'] = window.csrf_token
-            axios.post(window.ajaxURL + '&action=save_charge', data).then(() => {
+            axios.post(window.ajaxURL + '&action=' + window.SAVE_CHARGE, data).then(() => {
                 this.modal.hide()
-                this.loadConfigList()
+                this.loadChargesList()
 
             }).catch(err => {
                 console.log(err)
@@ -163,6 +192,7 @@ export default {
     data() {
         return {
             list: [],
+            modules_list: [],
             errorMessage: '',
             showError: false,
             modal: null,

@@ -14,7 +14,7 @@ try {
 
     $action = htmlentities($_GET['action']);
     if ($action == CustomCharges::GET_CHARGES) {
-        $query = "select * from " . CustomCharges::REDCAP_ENTITY_CUSTOM_CHARGES . " where project_id = " . intval($_GET['pid']);
+        $query = "select * from " . CustomCharges::REDCAP_ENTITY_CUSTOM_CHARGES . " where project_id = " . intval($module->getProjectId());
         $q = db_query($query);
         $result = [];
         while ($row = db_fetch_assoc($q)) {
@@ -22,7 +22,18 @@ try {
             $row['project_id'] = $Proj->project['app_title'];;
             $result[] = $row;
         }
-        echo json_encode($result);
+        echo json_encode(array('status' => 'success', 'records' => $result));
+    } elseif ($action == CustomCharges::MODULE_LIST) {
+        $records = $module->getModules();
+        $result = [array('prefix' => '', 'name' => 'SELECT PREFIX MODULE')];
+        foreach ($records as $name => $record) {
+            $temp = array_pop($record);
+            if (!$temp['module_name']) {
+                continue;
+            }
+            $result[] = array('prefix' => $temp['module_name'], 'name' => $temp['module_display_name'] ?: $temp['module_name'], 'description' => $temp['module_description']);
+        }
+        echo json_encode(array('status' => 'success', 'records' => $result));
     } elseif ($action == CustomCharges::SAVE_CHARGE) {
         $body = json_decode(file_get_contents('php://input'), true);
         if (!isset($_GET['pid'])) {

@@ -14,6 +14,11 @@ try {
     <script>
         window.ajaxURL = "<?php echo $module->getUrl('ajax/handle.php') ?>"
         window.csrf_token = "<?=$module->getCSRFToken()?>";
+        window.GET_CHARGES = "<?=$module::GET_CHARGES?>";
+        window.SAVE_CHARGE = "<?=$module::SAVE_CHARGE?>";
+        window.MODULE_LIST = "<?=$module::MODULE_LIST?>";
+        window.DELETE_CHARGE = "<?=$module::DELETE_CHARGE?>";
+
         window.addEventListener('DOMContentLoaded', function (event) {
             const componentPromise = window.renderVueComponent(custom_charges_vue, '#custom-charges')
             componentPromise.then(component => {

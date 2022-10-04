@@ -4,6 +4,9 @@ namespace Stanford\CustomCharges;
 
 require_once "emLoggerTrait.php";
 
+/**
+ *
+ */
 class CustomCharges extends \ExternalModules\AbstractExternalModule
 {
 
@@ -14,20 +17,53 @@ class CustomCharges extends \ExternalModules\AbstractExternalModule
      */
     private $factory;
 
+    /**
+     *
+     */
     const REDCAP_ENTITY_CUSTOM_CHARGES = 'redcap_entity_custom_charges';
 
+    /**
+     *
+     */
     const CUSTOM_CHARGES = 'custom_charges';
 
+    /**
+     *
+     */
     const GET_CHARGES = 'get_charges';
 
+    /**
+     *
+     */
     const SAVE_CHARGE = 'save_charge';
 
+    /**
+     *
+     */
+    const MODULE_LIST = 'get_modules_list';
+
+    /**
+     *
+     */
+    const DELETE_CHARGE = 'delete_charge';
+
+    /**
+     * @var array
+     */
+    private array $modules = [];
+
+    /**
+     *
+     */
     public function __construct()
     {
         parent::__construct();
         // Other code to run when object is instantiated
     }
 
+    /**
+     * @return array
+     */
     public function redcap_entity_types()
     {
         $types = [];
@@ -44,7 +80,7 @@ class CustomCharges extends \ExternalModules\AbstractExternalModule
                 ],
                 'module_prefix' => [
                     'name' => 'Optional: Module Prefix',
-                    'type' => 'boolean',
+                    'type' => 'text',
                     'required' => false,
                 ],
                 'is_recurring' => [
@@ -63,6 +99,12 @@ class CustomCharges extends \ExternalModules\AbstractExternalModule
                     'type' => 'text',
                     'required' => false,
                 ],
+                'status' => [
+                    'name' => 'Charge Status',
+                    'type' => 'boolean',
+                    'default' => 'true',
+                    'required' => false,
+                ],
             ],
             'special_keys' => [
                 'label' => 'project_id', // "name" represents the entity label.
@@ -72,6 +114,11 @@ class CustomCharges extends \ExternalModules\AbstractExternalModule
         return $types;
     }
 
+    /**
+     * @param $project_id
+     * @param $link
+     * @return mixed|null
+     */
     public function redcap_module_link_check_display($project_id, $link)
     {
         //limit the logging link to Super Users
@@ -83,6 +130,30 @@ class CustomCharges extends \ExternalModules\AbstractExternalModule
             }
         }
         return $link;
+    }
+
+    /**
+     * @return array
+     */
+    public function getModules()
+    {
+        if (!$this->modules) {
+            $this->setModules();
+        }
+        return $this->modules;
+    }
+
+    /**
+     */
+    public function setModules()
+    {
+        $param = array(
+            'project_id' => $this->getSystemSetting('em-project-id'),
+            'return_format' => 'array',
+            'events' => $this->framework->getFirstEventId($this->getSystemSetting('em-project-id'))
+        );
+        $modules = \REDCap::getData($param);
+        $this->modules = $modules;
     }
 
 
