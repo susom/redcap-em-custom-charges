@@ -55,12 +55,12 @@ class CustomCharges extends \ExternalModules\AbstractExternalModule
     /**
      * @var array
      */
-    private array $modules = [];
+    private $modules = [];
 
     /**
      *
      */
-    private array $charges = [];
+    private $charges = [];
 
     /**
      *
@@ -189,7 +189,7 @@ class CustomCharges extends \ExternalModules\AbstractExternalModule
     /**
      * @return array
      */
-    public function getCharges($projectId = ''): array
+    public function getCharges($projectId = '')
     {
         if (!$this->charges) {
             $this->setCharges($projectId);
@@ -199,7 +199,7 @@ class CustomCharges extends \ExternalModules\AbstractExternalModule
 
     /**
      */
-    public function setCharges($projectId = ''): void
+    public function setCharges($projectId = '')
     {
         global $Proj;
         if ($projectId) {
