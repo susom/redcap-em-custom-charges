@@ -35,6 +35,7 @@ try {
         if (!isset($body['amount'])) {
             throw new \Exception('Amount is not available');
         }
+        $module->getR2p2DashboardObject()->getPortal()->setProjectPortalSavedConfig($this->getProjectId());
         $data = array(
             'project_id' => filter_var($_GET['pid'], FILTER_SANITIZE_NUMBER_INT),
             'amount' => filter_var($body['amount'], FILTER_SANITIZE_NUMBER_INT),

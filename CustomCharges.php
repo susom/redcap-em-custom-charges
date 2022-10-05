@@ -69,7 +69,6 @@ class CustomCharges extends \ExternalModules\AbstractExternalModule
      * @var ProjectPortal
      */
     private $r2p2DashboardObject;
-
     /**
      *
      */
@@ -80,12 +79,12 @@ class CustomCharges extends \ExternalModules\AbstractExternalModule
         // we need to make sure this project has RMA in place to be able to generate custom charges;
         if (ExternalModules::getSystemSetting($this->getPrefix(), 'r2p2-dashboard-em') != '') {
             $this->setR2p2DashboardObject(ExternalModules::getModuleInstance(ExternalModules::getSystemSetting($this->getPrefix(), 'r2p2-dashboard-em')));
-            $this->getR2p2DashboardObject()->getPortal()->setProjectPortalSavedConfig($this->getProjectId());
         }
     }
 
     public function doesProjectHaveRMA()
     {
+        $this->getR2p2DashboardObject()->getPortal()->setProjectPortalSavedConfig($this->getProjectId());
         return $this->getR2p2DashboardObject()->getPortal()->getHasRMA();
     }
 
