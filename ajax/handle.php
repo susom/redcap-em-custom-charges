@@ -41,6 +41,7 @@ try {
             'notes' => htmlentities($body['notes']),
             'module_prefix' => htmlentities($body['module_prefix']),
             'is_recurring' => htmlentities($body['is_recurring']),
+            'rma_id' => $module->getR2p2DashboardObject()->getPortal()->getRmaId(),
             'status' => 1,
         );
         // no id means new record

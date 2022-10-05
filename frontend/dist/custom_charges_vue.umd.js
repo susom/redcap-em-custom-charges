@@ -2963,16 +2963,32 @@ var render = function render() {
 
 var staticRenderFns = [];
 
-;// CONCATENATED MODULE: ./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib/index.js??clonedRuleSet-82.use[1]!./node_modules/@vue/vue-loader-v15/lib/loaders/templateLoader.js??ruleSet[1].rules[3]!./node_modules/@vue/vue-loader-v15/lib/index.js??vue-loader-options!./src/components/ChargesComponent.vue?vue&type=template&id=51763dc7&scoped=true&
-var ChargesComponentvue_type_template_id_51763dc7_scoped_true_render = function render() {
+;// CONCATENATED MODULE: ./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib/index.js??clonedRuleSet-82.use[1]!./node_modules/@vue/vue-loader-v15/lib/loaders/templateLoader.js??ruleSet[1].rules[3]!./node_modules/@vue/vue-loader-v15/lib/index.js??vue-loader-options!./src/components/ChargesComponent.vue?vue&type=template&id=7ac03152&scoped=true&
+var ChargesComponentvue_type_template_id_7ac03152_scoped_true_render = function render() {
   var _vm = this,
       _c = _vm._self._c;
 
   return _c('div', {
     staticClass: "container-fluid"
-  }, [_vm._m(0), _c('div', {
+  }, [_c('div', {
+    staticClass: "row"
+  }, [_c('div', {
+    staticClass: "col-2"
+  }, [_c('button', {
+    staticClass: "btn btn-primary",
+    attrs: {
+      "disabled": _vm.isDisabled,
+      "type": "button",
+      "data-bs-toggle": "modal",
+      "data-bs-target": "#chargeModal"
+    }
+  }, [_vm._v(" Add Custom Charge ")])])]), _c('div', {
+    staticClass: "row"
+  }, [_c('div', {
+    staticClass: "col-12"
+  }, [_vm.isDisabled ? _c('small', [_vm._v("Button is disabled because NO RMA found for this project. Please create a RMA to create custom charges. ")]) : _vm._e()])]), _c('div', {
     ref: "el",
-    staticClass: "alert alert-danger alert-dismissible fade",
+    staticClass: "alert alert-info alert-dismissible fade",
     class: {
       show: _vm.showError
     },
@@ -2988,7 +3004,7 @@ var ChargesComponentvue_type_template_id_51763dc7_scoped_true_render = function 
     }
   })]), _c('table', {
     staticClass: "table table-hover"
-  }, [_vm._m(1), _c('tbody', _vm._l(this.list, function (item) {
+  }, [_vm._m(0), _c('tbody', _vm._l(this.list, function (item) {
     return _c('tr', {
       key: item.id
     }, [_c('td', [_vm._v(_vm._s(item.id))]), _c('td', [_vm._v(_vm._s(item.project_id))]), _c('td', [_vm._v(_vm._s(item.module_prefix))]), _c('td', [_vm._v(_vm._s(item.is_recurring))]), _c('td', [_vm._v("$" + _vm._s(item.amount))]), _c('td', [_vm._v(_vm._s(item.notes))]), _c('td', [_c('div', {
@@ -3060,7 +3076,7 @@ var ChargesComponentvue_type_template_id_51763dc7_scoped_true_render = function 
     staticClass: "modal-dialog"
   }, [_c('div', {
     staticClass: "modal-content"
-  }, [_vm._m(2), _c('div', {
+  }, [_vm._m(1), _c('div', {
     staticClass: "modal-body"
   }, [_c('div', {
     ref: "el",
@@ -3101,7 +3117,7 @@ var ChargesComponentvue_type_template_id_51763dc7_scoped_true_render = function 
     staticClass: "mb-3"
   }, [_c('div', {
     staticClass: "row"
-  }, [_vm._m(3), _c('div', {
+  }, [_vm._m(2), _c('div', {
     staticClass: "col-9"
   }, [_c('input', {
     directives: [{
@@ -3130,7 +3146,7 @@ var ChargesComponentvue_type_template_id_51763dc7_scoped_true_render = function 
     staticClass: "mb-3"
   }, [_c('div', {
     staticClass: "row"
-  }, [_vm._m(4), _c('div', {
+  }, [_vm._m(3), _c('div', {
     staticClass: "col-9"
   }, [_c('div', {
     staticClass: "form-check"
@@ -3195,7 +3211,7 @@ var ChargesComponentvue_type_template_id_51763dc7_scoped_true_render = function 
     staticClass: "mb-3 form-check"
   }, [_c('div', {
     staticClass: "row"
-  }, [_vm._m(5), _c('div', {
+  }, [_vm._m(4), _c('div', {
     staticClass: "col-9"
   }, [_c('select', {
     directives: [{
@@ -3231,7 +3247,7 @@ var ChargesComponentvue_type_template_id_51763dc7_scoped_true_render = function 
     staticClass: "mb-3"
   }, [_c('div', {
     staticClass: "row"
-  }, [_vm._m(6), _c('div', {
+  }, [_vm._m(5), _c('div', {
     staticClass: "col-9"
   }, [_c('textarea', {
     directives: [{
@@ -3275,23 +3291,7 @@ var ChargesComponentvue_type_template_id_51763dc7_scoped_true_render = function 
   }, [_vm._v("Save changes")])])])])])]);
 };
 
-var ChargesComponentvue_type_template_id_51763dc7_scoped_true_staticRenderFns = [function () {
-  var _vm = this,
-      _c = _vm._self._c;
-
-  return _c('div', {
-    staticClass: "row"
-  }, [_c('div', {
-    staticClass: "col-2"
-  }, [_c('button', {
-    staticClass: "btn btn-primary",
-    attrs: {
-      "type": "button",
-      "data-bs-toggle": "modal",
-      "data-bs-target": "#chargeModal"
-    }
-  }, [_vm._v(" Add Custom Charge ")])])]);
-}, function () {
+var ChargesComponentvue_type_template_id_7ac03152_scoped_true_staticRenderFns = [function () {
   var _vm = this,
       _c = _vm._self._c;
 
@@ -3362,10 +3362,10 @@ var ChargesComponentvue_type_template_id_51763dc7_scoped_true_staticRenderFns = 
     attrs: {
       "for": "exampleFormControlTextarea1"
     }
-  }, [_vm._v("Noes")])]);
+  }, [_vm._v("Notes")])]);
 }];
 
-;// CONCATENATED MODULE: ./src/components/ChargesComponent.vue?vue&type=template&id=51763dc7&scoped=true&
+;// CONCATENATED MODULE: ./src/components/ChargesComponent.vue?vue&type=template&id=7ac03152&scoped=true&
 
 // EXTERNAL MODULE: ./node_modules/axios/index.js
 var axios = __webpack_require__(669);
@@ -10657,8 +10657,11 @@ defineJQueryPlugin(Toast);
     },
     deleteCharge: function (chargeId) {
       if (confirm('Are you sure you want to delete this Charge?')) {
-        axios_default().get(window.ajaxURL + '&action=' + window.DELETE_CHARGE + '&id=' + chargeId).then(() => {
+        axios_default().get(window.ajaxURL + '&action=' + window.DELETE_CHARGE + '&id=' + chargeId).then(response => {
           this.loadChargesList();
+          this.showError = true;
+          this.variant = 'success';
+          this.errorMessage = response.data.message;
         }).catch(err => {
           this.showError = true;
 
@@ -10697,6 +10700,8 @@ defineJQueryPlugin(Toast);
   data() {
     return {
       list: [],
+      variant: 'danger',
+      modal_button: '',
       modules_list: [],
       errorMessage: '',
       showError: false,
@@ -10709,6 +10714,14 @@ defineJQueryPlugin(Toast);
         module_prefix: ''
       }
     };
+  },
+
+  computed: {
+    isDisabled() {
+      // evaluate whatever you need to determine disabled here...
+      return window.HAS_RMA !== '1';
+    }
+
   },
 
   mounted() {
@@ -10827,11 +10840,11 @@ function normalizeComponent(
 ;
 var component = normalizeComponent(
   components_ChargesComponentvue_type_script_lang_js_,
-  ChargesComponentvue_type_template_id_51763dc7_scoped_true_render,
-  ChargesComponentvue_type_template_id_51763dc7_scoped_true_staticRenderFns,
+  ChargesComponentvue_type_template_id_7ac03152_scoped_true_render,
+  ChargesComponentvue_type_template_id_7ac03152_scoped_true_staticRenderFns,
   false,
   null,
-  "51763dc7",
+  "7ac03152",
   null
   
 )

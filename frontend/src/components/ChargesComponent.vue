@@ -3,12 +3,20 @@
         <!-- Button trigger modal -->
         <div class="row">
             <div class="col-2">
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#chargeModal">
+                <button :disabled=isDisabled type="button" class="btn btn-primary" data-bs-toggle="modal"
+                        data-bs-target="#chargeModal">
                     Add Custom Charge
                 </button>
+
             </div>
         </div>
-        <div ref="el" class="alert alert-danger alert-dismissible fade" :class="{show : showError}" role="alert">
+        <div class="row">
+            <div class="col-12">
+                <small v-if="isDisabled">Button is disabled because NO RMA found for this project. Please create a RMA
+                    to create custom charges. </small>
+            </div>
+        </div>
+        <div ref="el" class="alert alert-info alert-dismissible fade" :class="{show : showError}" role="alert">
             <div>{{ this.errorMessage }}</div>
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
@@ -185,8 +193,11 @@ export default {
         },
         deleteCharge: function (chargeId) {
             if (confirm('Are you sure you want to delete this Charge?')) {
-                axios.get(window.ajaxURL + '&action=' + window.DELETE_CHARGE + '&id=' + chargeId).then(() => {
+                axios.get(window.ajaxURL + '&action=' + window.DELETE_CHARGE + '&id=' + chargeId).then(response => {
                     this.loadChargesList()
+                    this.showError = true
+                    this.variant = 'success'
+                    this.errorMessage = response.data.message
                 }).catch(err => {
                     this.showError = true
                     if (err.response !== undefined) {
@@ -224,6 +235,8 @@ export default {
     data() {
         return {
             list: [],
+            variant: 'danger',
+            modal_button: '',
             modules_list: [],
             errorMessage: '',
             showError: false,
@@ -235,6 +248,12 @@ export default {
                 notes: '',
                 module_prefix: ''
             }
+        }
+    },
+    computed: {
+        isDisabled() {
+            // evaluate whatever you need to determine disabled here...
+            return window.HAS_RMA !== '1';
         }
     },
     mounted() {

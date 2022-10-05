@@ -58,6 +58,12 @@
             "required": true,
             "default": "16000",
             "type": "text"
+        },
+        {
+            "key": "r2p2-dashboard-em",
+            "name": "R2P2 EM dashboard",
+            "required": true,
+            "type": "text"
         }
     ],
     "compatibility": {

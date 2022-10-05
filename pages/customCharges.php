@@ -19,6 +19,7 @@ try {
         window.MODULE_LIST = "<?=$module::MODULE_LIST?>";
         window.DELETE_CHARGE = "<?=$module::DELETE_CHARGE?>";
         window.EDIT_CHARGE = "<?=$module::EDIT_CHARGE?>";
+        window.HAS_RMA = "<?=$module->doesProjectHaveRMA()?>";
 
         window.addEventListener('DOMContentLoaded', function (event) {
             const componentPromise = window.renderVueComponent(custom_charges_vue, '#custom-charges')

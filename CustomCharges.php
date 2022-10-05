@@ -2,6 +2,9 @@
 namespace Stanford\CustomCharges;
 
 
+use ExternalModules\ExternalModules;
+use Stanford\ProjectPortal\ProjectPortal;
+
 require_once "emLoggerTrait.php";
 
 /**
@@ -63,12 +66,27 @@ class CustomCharges extends \ExternalModules\AbstractExternalModule
     private $charges = [];
 
     /**
+     * @var ProjectPortal
+     */
+    private $r2p2DashboardObject;
+
+    /**
      *
      */
     public function __construct()
     {
         parent::__construct();
-        // Other code to run when object is instantiated
+
+        // we need to make sure this project has RMA in place to be able to generate custom charges;
+        if (ExternalModules::getSystemSetting($this->getPrefix(), 'r2p2-dashboard-em') != '') {
+            $this->setR2p2DashboardObject(ExternalModules::getModuleInstance(ExternalModules::getSystemSetting($this->getPrefix(), 'r2p2-dashboard-em')));
+            $this->getR2p2DashboardObject()->getPortal()->setProjectPortalSavedConfig($this->getProjectId());
+        }
+    }
+
+    public function doesProjectHaveRMA()
+    {
+        return $this->getR2p2DashboardObject()->getPortal()->getHasRMA();
     }
 
     /**
@@ -114,6 +132,12 @@ class CustomCharges extends \ExternalModules\AbstractExternalModule
                     'type' => 'boolean',
                     'default' => 'true',
                     'required' => false,
+                ],
+                'rma_id' => [
+                    'name' => 'R2P2 RMA id',
+                    'type' => 'integer',
+                    'default' => 'true',
+                    'required' => true,
                 ],
             ],
             'special_keys' => [
@@ -235,4 +259,22 @@ class CustomCharges extends \ExternalModules\AbstractExternalModule
             throw new \Exception(db_error());
         }
     }
+
+    /**
+     * @return ProjectPortal
+     */
+    public function getR2p2DashboardObject(): ProjectPortal
+    {
+        return $this->r2p2DashboardObject;
+    }
+
+    /**
+     * @param ProjectPortal $r2p2DashboardObject
+     */
+    public function setR2p2DashboardObject(ProjectPortal $r2p2DashboardObject): void
+    {
+        $this->r2p2DashboardObject = $r2p2DashboardObject;
+    }
+
+
 }
