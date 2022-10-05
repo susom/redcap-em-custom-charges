@@ -18,6 +18,7 @@ try {
         window.SAVE_CHARGE = "<?=$module::SAVE_CHARGE?>";
         window.MODULE_LIST = "<?=$module::MODULE_LIST?>";
         window.DELETE_CHARGE = "<?=$module::DELETE_CHARGE?>";
+        window.EDIT_CHARGE = "<?=$module::EDIT_CHARGE?>";
 
         window.addEventListener('DOMContentLoaded', function (event) {
             const componentPromise = window.renderVueComponent(custom_charges_vue, '#custom-charges')

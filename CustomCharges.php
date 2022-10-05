@@ -48,9 +48,19 @@ class CustomCharges extends \ExternalModules\AbstractExternalModule
     const DELETE_CHARGE = 'delete_charge';
 
     /**
+     *
+     */
+    const EDIT_CHARGE = 'edit_charge';
+
+    /**
      * @var array
      */
     private array $modules = [];
+
+    /**
+     *
+     */
+    private array $charges = [];
 
     /**
      *
@@ -176,4 +186,53 @@ class CustomCharges extends \ExternalModules\AbstractExternalModule
         $this->factory = $factory;
     }
 
+    /**
+     * @return array
+     */
+    public function getCharges($projectId = ''): array
+    {
+        if (!$this->charges) {
+            $this->setCharges($projectId);
+        }
+        return $this->charges;
+    }
+
+    /**
+     */
+    public function setCharges($projectId = ''): void
+    {
+        global $Proj;
+        if ($projectId) {
+            $query = "select * from " . CustomCharges::REDCAP_ENTITY_CUSTOM_CHARGES . " where project_id = " . intval($projectId);
+        } else {
+            $query = "select * from " . CustomCharges::REDCAP_ENTITY_CUSTOM_CHARGES;
+        }
+
+        $q = db_query($query);
+        $charges = [];
+        while ($row = db_fetch_assoc($q)) {
+            $row['is_recurring'] = $row['is_recurring'] ? 'Yes' : 'No';
+            $row['status'] = $row['status'] ? 'Active' : 'Disabled';
+            $row['project_id'] = $Proj->project['app_title'];;
+            $row['module_prefix'] = $row['module_prefix'] ?: 'N/A';
+            $charges[] = $row;
+        }
+        $this->charges = $charges;
+    }
+
+
+    /**
+     * @throws \Exception
+     */
+    public function deleteCharge($chargeId)
+    {
+        $query = "DELETE from " . CustomCharges::REDCAP_ENTITY_CUSTOM_CHARGES . " where id = " . intval($chargeId);
+
+        $q = db_query($query);
+        if (!db_error()) {
+            return true;
+        } else {
+            throw new \Exception(db_error());
+        }
+    }
 }

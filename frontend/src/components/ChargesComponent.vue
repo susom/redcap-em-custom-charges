@@ -1,5 +1,13 @@
 <template>
-    <div>
+    <div class="container-fluid">
+        <!-- Button trigger modal -->
+        <div class="row">
+            <div class="col-2">
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#chargeModal">
+                    Add Custom Charge
+                </button>
+            </div>
+        </div>
         <div ref="el" class="alert alert-danger alert-dismissible fade" :class="{show : showError}" role="alert">
             <div>{{ this.errorMessage }}</div>
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
@@ -13,35 +21,53 @@
                 <th>Is Recurring</th>
                 <th>Amount</th>
                 <th>Notes</th>
+                <th></th>
             </tr>
             </thead>
             <tbody>
-            <tr v-for="config in this.list" :key="config.id">
-                <td>{{ config.id }}</td>
-                <td>{{ config.project_id }}</td>
-                <td>{{ config.module_prefix }}</td>
-                <td>{{ config.is_recurring }}</td>
-                <td>{{ config.amount }}</td>
-                <td>{{ config.notes }}</td>
+            <tr v-for="item in this.list" :key="item.id">
+                <td>{{ item.id }}</td>
+                <td>{{ item.project_id }}</td>
+                <td>{{ item.module_prefix }}</td>
+                <td>{{ item.is_recurring }}</td>
+                <td>${{ item.amount }}</td>
+                <td>{{ item.notes }}</td>
+                <td>
+                    <div class="row">
+                        <div class="col-1">
+                            <a href="#" @click="deleteCharge(item.id)">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                     class="bi bi-trash" viewBox="0 0 16 16">
+                                    <path
+                                        d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+                                    <path fill-rule="evenodd"
+                                          d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+                                </svg>
+                            </a>
+                        </div>
+                        <div class="col-1">
+                            <a href="#" @click="editCharge(item)">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                     class="bi bi-pencil" viewBox="0 0 16 16">
+                                    <path
+                                        d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </td>
             </tr>
             </tbody>
         </table>
-        <!-- Button trigger modal -->
-        <div class="row">
-            <div class="col-4">
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#configModal">
-                    Add Custom Charge
-                </button>
-            </div>
-        </div>
+
 
         <!-- Modal -->
-        <div class="modal fade" id="configModal" ref="configModal" tabindex="-1" aria-labelledby="configModalLabel"
+        <div class="modal fade" id="chargeModal" ref="chargeModal" tabindex="-1" aria-labelledby="chargeModalLabel"
              aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                        <h5 class="modal-title" id="exampleModalLabel">Add/Edit Charge</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
@@ -50,6 +76,7 @@
                             <div>{{ this.errorMessage }}</div>
                         </div>
                         <form action="#">
+                            <input type="hidden" name="id" id="id" v-model="charge.id">
                             <div class="mb-3">
                                 <div class="row">
                                     <div class="col-3"><label for="amount" class="form-label">Amount</label></div>
@@ -89,7 +116,7 @@
                                         Module</label>
                                     </div>
                                     <div class="col-9">
-                                        <select name="module_prefix" v-model="charge.module_prefix">
+                                        <select class="form-select" name="module_prefix" v-model="charge.module_prefix">
                                             <option v-for="item in this.modules_list" :key="item.prefix"
                                                     :value="item.prefix">{{ item.name }}
                                             </option>
@@ -101,7 +128,7 @@
                             <div class="mb-3">
                                 <div class="row">
                                     <div class="col-3"><label for="exampleFormControlTextarea1"
-                                                              class="form-label">Noes</label></div>
+                                                              class="form-label">Notes</label></div>
                                     <div class="col-9"><textarea name="notes" class="form-control"
                                                                  id="exampleFormControlTextarea1" rows="3"
                                                                  v-model="charge.notes"></textarea></div>
@@ -156,10 +183,10 @@ export default {
                 }
             });
         },
-        deleteCharge: function () {
+        deleteCharge: function (chargeId) {
             if (confirm('Are you sure you want to delete this Charge?')) {
-                axios.get(window.ajaxURL + '&action=' + window.DELETE_CHARGE).then(response => {
-                    this.list = response.data.records
+                axios.get(window.ajaxURL + '&action=' + window.DELETE_CHARGE + '&id=' + chargeId).then(() => {
+                    this.loadChargesList()
                 }).catch(err => {
                     this.showError = true
                     if (err.response !== undefined) {
@@ -169,6 +196,11 @@ export default {
                     }
                 });
             }
+        },
+        editCharge: function (charge) {
+            charge['is_recurring'] = charge['is_recurring'] === 'Yes' ? 1 : 0
+            this.charge = charge
+            this.modal.show()
         },
         saveCharge: function () {
             var data = this.charge
@@ -197,6 +229,7 @@ export default {
             showError: false,
             modal: null,
             charge: {
+                id: '',
                 amount: '',
                 is_recurring: false,
                 notes: '',
@@ -206,7 +239,7 @@ export default {
     },
     mounted() {
         this.prepareComponent();
-        this.modal = new Modal(this.$refs.configModal)
+        this.modal = new Modal(this.$refs.chargeModal)
     }
 }
 </script>

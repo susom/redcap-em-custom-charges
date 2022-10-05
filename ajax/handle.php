@@ -14,14 +14,7 @@ try {
 
     $action = htmlentities($_GET['action']);
     if ($action == CustomCharges::GET_CHARGES) {
-        $query = "select * from " . CustomCharges::REDCAP_ENTITY_CUSTOM_CHARGES . " where project_id = " . intval($module->getProjectId());
-        $q = db_query($query);
-        $result = [];
-        while ($row = db_fetch_assoc($q)) {
-            $row['is_recurring'] = $row['is_recurring'] ? 'Yes' : 'No';
-            $row['project_id'] = $Proj->project['app_title'];;
-            $result[] = $row;
-        }
+        $result = $module->getCharges($module->getProjectId());
         echo json_encode(array('status' => 'success', 'records' => $result));
     } elseif ($action == CustomCharges::MODULE_LIST) {
         $records = $module->getModules();
@@ -48,12 +41,30 @@ try {
             'notes' => htmlentities($body['notes']),
             'module_prefix' => htmlentities($body['module_prefix']),
             'is_recurring' => htmlentities($body['is_recurring']),
+            'status' => 1,
         );
-        $entity = $module->getFactory()->create(CustomCharges::CUSTOM_CHARGES, $data);
+        // no id means new record
+        if (!$body['id']) {
+            $entity = $module->getFactory()->create(CustomCharges::CUSTOM_CHARGES, $data);
+        } else {
+            $entity = $module->getFactory()->getInstance(CustomCharges::CUSTOM_CHARGES, filter_var($body['id'], FILTER_SANITIZE_NUMBER_INT));
+            if ($entity->setData($data)) {
+                $entity->save();
+            }
+        }
+
         if ($entity) {
-            echo json_encode(array('status' => 'success', 'message' => 'record saved correctly', 'record' => $data));
+            echo json_encode(array('status' => 'success', 'message' => 'record saved successfully', 'record' => $data));
         } else {
             throw new \Exception(implode(',', $module->getFactory()->errors));
+        }
+    } elseif ($action == CustomCharges::DELETE_CHARGE) {
+        if (!isset($_GET['id'])) {
+            throw new \Exception('ID is not available');
+        }
+        $result = $module->deleteCharge(filter_var($_GET['id'], FILTER_SANITIZE_NUMBER_INT));
+        if ($result == true) {
+            echo json_encode(array('status' => 'success', 'message' => 'record deleted successfully'));
         }
     } else {
         throw new \Exception('Unknown Action');

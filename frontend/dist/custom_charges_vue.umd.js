@@ -2963,12 +2963,14 @@ var render = function render() {
 
 var staticRenderFns = [];
 
-;// CONCATENATED MODULE: ./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib/index.js??clonedRuleSet-82.use[1]!./node_modules/@vue/vue-loader-v15/lib/loaders/templateLoader.js??ruleSet[1].rules[3]!./node_modules/@vue/vue-loader-v15/lib/index.js??vue-loader-options!./src/components/ChargesComponent.vue?vue&type=template&id=e804da96&scoped=true&
-var ChargesComponentvue_type_template_id_e804da96_scoped_true_render = function render() {
+;// CONCATENATED MODULE: ./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib/index.js??clonedRuleSet-82.use[1]!./node_modules/@vue/vue-loader-v15/lib/loaders/templateLoader.js??ruleSet[1].rules[3]!./node_modules/@vue/vue-loader-v15/lib/index.js??vue-loader-options!./src/components/ChargesComponent.vue?vue&type=template&id=51763dc7&scoped=true&
+var ChargesComponentvue_type_template_id_51763dc7_scoped_true_render = function render() {
   var _vm = this,
       _c = _vm._self._c;
 
-  return _c('div', [_c('div', {
+  return _c('div', {
+    staticClass: "container-fluid"
+  }, [_vm._m(0), _c('div', {
     ref: "el",
     staticClass: "alert alert-danger alert-dismissible fade",
     class: {
@@ -2986,17 +2988,72 @@ var ChargesComponentvue_type_template_id_e804da96_scoped_true_render = function 
     }
   })]), _c('table', {
     staticClass: "table table-hover"
-  }, [_vm._m(0), _c('tbody', _vm._l(this.list, function (config) {
+  }, [_vm._m(1), _c('tbody', _vm._l(this.list, function (item) {
     return _c('tr', {
-      key: config.id
-    }, [_c('td', [_vm._v(_vm._s(config.id))]), _c('td', [_vm._v(_vm._s(config.project_id))]), _c('td', [_vm._v(_vm._s(config.module_prefix))]), _c('td', [_vm._v(_vm._s(config.is_recurring))]), _c('td', [_vm._v(_vm._s(config.amount))]), _c('td', [_vm._v(_vm._s(config.notes))])]);
-  }), 0)]), _vm._m(1), _c('div', {
-    ref: "configModal",
+      key: item.id
+    }, [_c('td', [_vm._v(_vm._s(item.id))]), _c('td', [_vm._v(_vm._s(item.project_id))]), _c('td', [_vm._v(_vm._s(item.module_prefix))]), _c('td', [_vm._v(_vm._s(item.is_recurring))]), _c('td', [_vm._v("$" + _vm._s(item.amount))]), _c('td', [_vm._v(_vm._s(item.notes))]), _c('td', [_c('div', {
+      staticClass: "row"
+    }, [_c('div', {
+      staticClass: "col-1"
+    }, [_c('a', {
+      attrs: {
+        "href": "#"
+      },
+      on: {
+        "click": function ($event) {
+          return _vm.deleteCharge(item.id);
+        }
+      }
+    }, [_c('svg', {
+      staticClass: "bi bi-trash",
+      attrs: {
+        "xmlns": "http://www.w3.org/2000/svg",
+        "width": "16",
+        "height": "16",
+        "fill": "currentColor",
+        "viewBox": "0 0 16 16"
+      }
+    }, [_c('path', {
+      attrs: {
+        "d": "M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"
+      }
+    }), _c('path', {
+      attrs: {
+        "fill-rule": "evenodd",
+        "d": "M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"
+      }
+    })])])]), _c('div', {
+      staticClass: "col-1"
+    }, [_c('a', {
+      attrs: {
+        "href": "#"
+      },
+      on: {
+        "click": function ($event) {
+          return _vm.editCharge(item);
+        }
+      }
+    }, [_c('svg', {
+      staticClass: "bi bi-pencil",
+      attrs: {
+        "xmlns": "http://www.w3.org/2000/svg",
+        "width": "16",
+        "height": "16",
+        "fill": "currentColor",
+        "viewBox": "0 0 16 16"
+      }
+    }, [_c('path', {
+      attrs: {
+        "d": "M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"
+      }
+    })])])])])])]);
+  }), 0)]), _c('div', {
+    ref: "chargeModal",
     staticClass: "modal fade",
     attrs: {
-      "id": "configModal",
+      "id": "chargeModal",
       "tabindex": "-1",
-      "aria-labelledby": "configModalLabel",
+      "aria-labelledby": "chargeModalLabel",
       "aria-hidden": "true"
     }
   }, [_c('div', {
@@ -3018,7 +3075,29 @@ var ChargesComponentvue_type_template_id_e804da96_scoped_true_render = function 
     attrs: {
       "action": "#"
     }
-  }, [_c('div', {
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.charge.id,
+      expression: "charge.id"
+    }],
+    attrs: {
+      "type": "hidden",
+      "name": "id",
+      "id": "id"
+    },
+    domProps: {
+      "value": _vm.charge.id
+    },
+    on: {
+      "input": function ($event) {
+        if ($event.target.composing) return;
+
+        _vm.$set(_vm.charge, "id", $event.target.value);
+      }
+    }
+  }), _c('div', {
     staticClass: "mb-3"
   }, [_c('div', {
     staticClass: "row"
@@ -3125,6 +3204,7 @@ var ChargesComponentvue_type_template_id_e804da96_scoped_true_render = function 
       value: _vm.charge.module_prefix,
       expression: "charge.module_prefix"
     }],
+    staticClass: "form-select",
     attrs: {
       "name": "module_prefix"
     },
@@ -3146,7 +3226,7 @@ var ChargesComponentvue_type_template_id_e804da96_scoped_true_render = function 
       domProps: {
         "value": item.prefix
       }
-    }, [_vm._v(_vm._s(item.name))]);
+    }, [_vm._v(_vm._s(item.name) + " ")]);
   }), 0)])])]), _c('div', {
     staticClass: "mb-3"
   }, [_c('div', {
@@ -3195,27 +3275,27 @@ var ChargesComponentvue_type_template_id_e804da96_scoped_true_render = function 
   }, [_vm._v("Save changes")])])])])])]);
 };
 
-var ChargesComponentvue_type_template_id_e804da96_scoped_true_staticRenderFns = [function () {
-  var _vm = this,
-      _c = _vm._self._c;
-
-  return _c('thead', [_c('tr', [_c('th', [_vm._v("#")]), _c('th', [_vm._v("Project")]), _c('th', [_vm._v("External Module")]), _c('th', [_vm._v("Is Recurring")]), _c('th', [_vm._v("Amount")]), _c('th', [_vm._v("Notes")])])]);
-}, function () {
+var ChargesComponentvue_type_template_id_51763dc7_scoped_true_staticRenderFns = [function () {
   var _vm = this,
       _c = _vm._self._c;
 
   return _c('div', {
     staticClass: "row"
   }, [_c('div', {
-    staticClass: "col-4"
+    staticClass: "col-2"
   }, [_c('button', {
     staticClass: "btn btn-primary",
     attrs: {
       "type": "button",
       "data-bs-toggle": "modal",
-      "data-bs-target": "#configModal"
+      "data-bs-target": "#chargeModal"
     }
   }, [_vm._v(" Add Custom Charge ")])])]);
+}, function () {
+  var _vm = this,
+      _c = _vm._self._c;
+
+  return _c('thead', [_c('tr', [_c('th', [_vm._v("#")]), _c('th', [_vm._v("Project")]), _c('th', [_vm._v("External Module")]), _c('th', [_vm._v("Is Recurring")]), _c('th', [_vm._v("Amount")]), _c('th', [_vm._v("Notes")]), _c('th')])]);
 }, function () {
   var _vm = this,
       _c = _vm._self._c;
@@ -3227,7 +3307,7 @@ var ChargesComponentvue_type_template_id_e804da96_scoped_true_staticRenderFns = 
     attrs: {
       "id": "exampleModalLabel"
     }
-  }, [_vm._v("Modal title")]), _c('button', {
+  }, [_vm._v("Add/Edit Charge")]), _c('button', {
     staticClass: "btn-close",
     attrs: {
       "type": "button",
@@ -3285,7 +3365,7 @@ var ChargesComponentvue_type_template_id_e804da96_scoped_true_staticRenderFns = 
   }, [_vm._v("Noes")])]);
 }];
 
-;// CONCATENATED MODULE: ./src/components/ChargesComponent.vue?vue&type=template&id=e804da96&scoped=true&
+;// CONCATENATED MODULE: ./src/components/ChargesComponent.vue?vue&type=template&id=51763dc7&scoped=true&
 
 // EXTERNAL MODULE: ./node_modules/axios/index.js
 var axios = __webpack_require__(669);
@@ -10546,7 +10626,7 @@ defineJQueryPlugin(Toast);
   name: "ChargesComponent",
   methods: {
     prepareComponent: function () {
-      this.loadConfigList();
+      this.loadChargesList();
       this.loadModulesPrefixes();
     },
     loadModulesPrefixes: function () {
@@ -10562,7 +10642,7 @@ defineJQueryPlugin(Toast);
         }
       });
     },
-    loadConfigList: function () {
+    loadChargesList: function () {
       axios_default().get(window.ajaxURL + '&action=' + window.GET_CHARGES).then(response => {
         this.list = response.data.records;
       }).catch(err => {
@@ -10575,12 +10655,32 @@ defineJQueryPlugin(Toast);
         }
       });
     },
+    deleteCharge: function (chargeId) {
+      if (confirm('Are you sure you want to delete this Charge?')) {
+        axios_default().get(window.ajaxURL + '&action=' + window.DELETE_CHARGE + '&id=' + chargeId).then(() => {
+          this.loadChargesList();
+        }).catch(err => {
+          this.showError = true;
+
+          if (err.response !== undefined) {
+            this.errorMessage = err.response.data.message;
+          } else {
+            this.errorMessage = err;
+          }
+        });
+      }
+    },
+    editCharge: function (charge) {
+      charge['is_recurring'] = charge['is_recurring'] === 'Yes' ? 1 : 0;
+      this.charge = charge;
+      this.modal.show();
+    },
     saveCharge: function () {
       var data = this.charge;
       data['redcap_csrf_token'] = window.csrf_token;
       axios_default().post(window.ajaxURL + '&action=' + window.SAVE_CHARGE, data).then(() => {
         this.modal.hide();
-        this.loadConfigList();
+        this.loadChargesList();
       }).catch(err => {
         console.log(err);
         this.showError = true;
@@ -10602,6 +10702,7 @@ defineJQueryPlugin(Toast);
       showError: false,
       modal: null,
       charge: {
+        id: '',
         amount: '',
         is_recurring: false,
         notes: '',
@@ -10612,7 +10713,7 @@ defineJQueryPlugin(Toast);
 
   mounted() {
     this.prepareComponent();
-    this.modal = new Modal(this.$refs.configModal);
+    this.modal = new Modal(this.$refs.chargeModal);
   }
 
 });
@@ -10726,11 +10827,11 @@ function normalizeComponent(
 ;
 var component = normalizeComponent(
   components_ChargesComponentvue_type_script_lang_js_,
-  ChargesComponentvue_type_template_id_e804da96_scoped_true_render,
-  ChargesComponentvue_type_template_id_e804da96_scoped_true_staticRenderFns,
+  ChargesComponentvue_type_template_id_51763dc7_scoped_true_render,
+  ChargesComponentvue_type_template_id_51763dc7_scoped_true_staticRenderFns,
   false,
   null,
-  "e804da96",
+  "51763dc7",
   null
   
 )
