@@ -1,7 +1,7 @@
 {
-    "name": "CustomCharges",
+    "name": "Project Custom Charges",
     "namespace": "Stanford\\CustomCharges",
-    "description": "A template for a REDCap External Module",
+    "description": "This Module creates custom charges for a project. E.g. Twillio fees",
     "documentation": "README.md",
     "framework-version": 7,
     "authors": [
