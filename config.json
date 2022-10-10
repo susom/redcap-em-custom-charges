@@ -23,7 +23,7 @@
     "links": {
         "project": [
             {
-                "name": "SUPERUSER: Add Custom Charges",
+                "name": "SUPERUSER: Add Custom Charge",
                 "key": "customCharges",
                 "icon": "redcap-logo-letter",
                 "url": "pages/customCharges.php",
