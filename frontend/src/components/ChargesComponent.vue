@@ -192,7 +192,6 @@ export default {
         axios.interceptors.response.use((response) => {
             // trigger 'loading=false' event here
             ajaxCalls.pop()
-            console.log(ajaxCalls)
             if (ajaxCalls.length === 0) {
                 this.isLoading = false
             }
@@ -259,21 +258,27 @@ export default {
             this.modal.show()
         },
         saveCharge: function () {
-            var data = this.charge
+
+            var data = {
+                id: this.charge.id,
+                amount: this.charge.amount,
+                is_recurring: this.charge.is_recurring,
+                notes: this.charge.notes,
+                module_prefix: this.charge.module_prefix
+            }
             data['redcap_csrf_token'] = window.csrf_token
+
             axios.post(window.ajaxURL + '&action=' + window.SAVE_CHARGE, data).then(() => {
                 this.modal.hide()
                 this.loadChargesList()
-
             }).catch(err => {
-                console.log(err)
                 this.showError = true
+                this.isDisabled = false
                 if (err.response !== undefined) {
                     this.errorMessage = err.response.data.message
                 } else {
                     this.errorMessage = err
                 }
-
             });
         }
     },

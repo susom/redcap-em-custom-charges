@@ -35,6 +35,10 @@ try {
         if (!isset($body['amount'])) {
             throw new \Exception('Amount is not available');
         }
+        if (!$module->getR2p2DashboardObject()->getPortal()->getRmaId()) {
+            throw new \Exception('RMA is not available');
+        }
+
         $module->getR2p2DashboardObject()->getPortal()->setProjectPortalSavedConfig($module->getProjectId());
         $data = array(
             'project_id' => filter_var($_GET['pid'], FILTER_SANITIZE_NUMBER_INT),
@@ -58,7 +62,11 @@ try {
         if ($entity) {
             echo json_encode(array('status' => 'success', 'message' => 'record saved successfully', 'record' => $data));
         } else {
-            throw new \Exception(implode(',', $module->getFactory()->errors));
+            $errors = '';
+            foreach ($module->getFactory()->errors as $key => $value) {
+                $errors .= $key . '=>' . $value . "\n";
+            }
+            throw new \Exception($errors);
         }
     } elseif ($action == CustomCharges::DELETE_CHARGE) {
         if (!isset($_GET['id'])) {
