@@ -35,7 +35,7 @@ try {
         if (!isset($body['amount'])) {
             throw new \Exception('Amount is not available');
         }
-        if (!$module->getR2p2DashboardObject()->getPortal()->getRmaId()) {
+        if (!$module->doesProjectHaveRMA()) {
             throw new \Exception('RMA is not available');
         }
 
