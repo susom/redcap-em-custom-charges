@@ -84,6 +84,10 @@ class CustomCharges extends \ExternalModules\AbstractExternalModule
 
     public function doesProjectHaveRMA()
     {
+        if (!$this->getR2p2DashboardObject()) {
+            \REDCap::logEvent('RIT Dashboard EM is not enabled.');
+            return false;
+        }
         $this->getR2p2DashboardObject()->getPortal()->setProjectPortalSavedConfig($this->getProjectId());
         return $this->getR2p2DashboardObject()->getPortal()->getHasRMA();
     }
