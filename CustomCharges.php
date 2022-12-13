@@ -266,7 +266,7 @@ class CustomCharges extends \ExternalModules\AbstractExternalModule
     /**
      * @return ProjectPortal
      */
-    public function getR2p2DashboardObject(): ProjectPortal|null
+    public function getR2p2DashboardObject()
     {
         return $this->r2p2DashboardObject;
     }
