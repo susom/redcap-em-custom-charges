@@ -20,7 +20,7 @@ try {
         $records = $module->getModules();
         $result = [array('prefix' => '', 'name' => 'SELECT PREFIX MODULE')];
         foreach ($records as $name => $record) {
-            $temp = array_pop($record);
+            $temp = $record[$module->getFirstEventId()];
             if (!$temp['module_name']) {
                 continue;
             }
