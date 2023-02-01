@@ -4,7 +4,7 @@ namespace Stanford\CustomCharges;
 
 /** @var \Stanford\CustomCharges\CustomCharges $module */
 try {
-    if (!defined('SUPER_USER') or SUPER_USER == 0) {
+    if (!$module->isSuperUser()) {
         throw new \Exception('You are not allowed in this page.');
     }
     ?>

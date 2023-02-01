@@ -160,7 +160,7 @@ class CustomCharges extends \ExternalModules\AbstractExternalModule
     {
         //limit the logging link to Super Users
         if ($link['key'] = 'customCharges') {
-            if (SUPER_USER) {
+            if ($this->isSuperUser()) {
                 return $link;
             } else {
                 return null;

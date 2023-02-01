@@ -8,7 +8,7 @@ use GuzzleHttp\Exception\GuzzleException;
 
 try {
     global $Proj;
-    if (!defined('SUPER_USER') or SUPER_USER == 0) {
+    if (!$module->isSuperUser()) {
         throw new \Exception('You are not allowed in this page.');
     }
 
