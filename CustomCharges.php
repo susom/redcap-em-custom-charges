@@ -279,5 +279,8 @@ class CustomCharges extends \ExternalModules\AbstractExternalModule
         $this->r2p2DashboardObject = $r2p2DashboardObject;
     }
 
-
+    public function test()
+    {
+        return 'test';
+    }
 }
