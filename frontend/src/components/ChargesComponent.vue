@@ -71,96 +71,96 @@
             </table>
 
 
-            <!-- Modal -->
-            <div class="modal fade" id="chargeModal" ref="chargeModal" tabindex="-1" aria-labelledby="chargeModalLabel"
-                 aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Add/Edit Charge</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            <div ref="el" class="alert alert-danger alert-dismissible fade" :class="{show : showError}"
-                                 role="alert">
-                                <div>{{ this.errorMessage }}</div>
-                            </div>
-                            <form action="#">
-                                <input type="hidden" name="id" id="id" v-model="charge.id">
-                                <div class="mb-3">
-                                    <div class="row">
-                                        <div class="col-3"><label for="amount" class="form-label">Amount</label></div>
-                                        <div class="col-9"><input type="number" class="form-control" id="amount"
-                                                                  aria-describedby="amount"
-                                                                  v-model="charge.amount"></div>
-                                    </div>
-                                </div>
-                                <div class="mb-3">
-                                    <div class="row">
-                                        <div class="col-3"><label for="exampleInputEmail1" class="form-label">Is
-                                            Recurring?</label></div>
-                                        <div class="col-9">
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="is_recurring"
-                                                       id="is_recurring1"
-                                                       value="1" checked v-model="charge.is_recurring">
-                                                <label class="form-check-label" for="is_recurring1">
-                                                    Yes
-                                                </label>
-                                            </div>
-
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="is_recurring"
-                                                       id="is_recurring2"
-                                                       value="0" v-model="charge.is_recurring">
-                                                <label class="form-check-label" for="is_recurring2">
-                                                    No
-                                                </label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="mb-3">
-                                    <div class="row">
-                                        <div class="col-3"><label for="external-module" class="form-label">External
-                                            Module</label>
-                                        </div>
-                                        <div class="col-9">
-                                            <select class="form-select" name="module_prefix"
-                                                    v-model="charge.module_prefix">
-                                                <option v-for="item in this.modules_list" :key="item.prefix"
-                                                        :value="item.prefix">{{ item.name }}
-                                                </option>
-                                            </select>
-                                        </div>
-                                    </div>
-
-                                </div>
-                                <div class="mb-3">
-                                    <div class="row">
-                                        <div class="col-3"><label for="exampleFormControlTextarea1"
-                                                                  class="form-label">Notes</label></div>
-                                        <div class="col-9"><textarea name="notes" class="form-control"
-                                                                     id="exampleFormControlTextarea1" rows="3"
-                                                                     v-model="charge.notes"></textarea></div>
-                                    </div>
-
-
-                                </div>
-                            </form>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="button" :disabled='isDisabled' class="btn btn-primary"
-                                    @click="this.saveCharge">Save changes
-                            </button>
-                        </div>
-                    </div>
-                </div>
+        </div>
+      <!-- Modal -->
+      <div class="modal fade" id="chargeModal" ref="chargeModal" tabindex="-1" aria-labelledby="chargeModalLabel"
+           aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Add/Edit Charge</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
+            <div class="modal-body">
+              <div ref="el" class="alert alert-danger alert-dismissible fade" :class="{show : showError}"
+                   role="alert">
+                <div>{{ this.errorMessage }}</div>
+              </div>
+              <form action="#">
+                <input type="hidden" name="id" id="id" v-model="charge.id">
+                <div class="mb-3">
+                  <div class="row">
+                    <div class="col-3"><label for="amount" class="form-label">Amount</label></div>
+                    <div class="col-9"><input type="number" class="form-control" id="amount"
+                                              aria-describedby="amount"
+                                              v-model="charge.amount"></div>
+                  </div>
+                </div>
+                <div class="mb-3">
+                  <div class="row">
+                    <div class="col-3"><label for="exampleInputEmail1" class="form-label">Is
+                      Recurring?</label></div>
+                    <div class="col-9">
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="is_recurring"
+                               id="is_recurring1"
+                               value="1" checked v-model="charge.is_recurring">
+                        <label class="form-check-label" for="is_recurring1">
+                          Yes
+                        </label>
+                      </div>
+
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="is_recurring"
+                               id="is_recurring2"
+                               value="0" v-model="charge.is_recurring">
+                        <label class="form-check-label" for="is_recurring2">
+                          No
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="mb-3">
+                  <div class="row">
+                    <div class="col-3"><label for="external-module" class="form-label">External
+                      Module</label>
+                    </div>
+                    <div class="col-9">
+                      <select class="form-select" name="module_prefix"
+                              v-model="charge.module_prefix">
+                        <option v-for="item in this.modules_list" :key="item.prefix"
+                                :value="item.prefix">{{ item.name }}
+                        </option>
+                      </select>
+                    </div>
+                  </div>
+
+                </div>
+                <div class="mb-3">
+                  <div class="row">
+                    <div class="col-3"><label for="exampleFormControlTextarea1"
+                                              class="form-label">Notes</label></div>
+                    <div class="col-9"><textarea name="notes" class="form-control"
+                                                 id="exampleFormControlTextarea1" rows="3"
+                                                 v-model="charge.notes"></textarea></div>
+                  </div>
+
+
+                </div>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button type="button" :disabled='isDisabled' data-bs-dismiss="modal" class="btn btn-primary"
+                      @click="this.saveCharge">Save changes
+              </button>
+            </div>
+          </div>
         </div>
-        <div class="spinner-border" role="status" :class="{show: isLoading, hide: !isLoading}">
-        </div>
+      </div>
+      <div class="spinner-border" role="status" :class="{show: isLoading, hide: !isLoading}">
+      </div>
     </div>
 </template>
 
@@ -225,7 +225,8 @@ export default {
         },
         loadChargesList: function () {
             axios.get(window.ajaxURL + '&action=' + window.GET_CHARGES).then(response => {
-                this.list = response.data.records
+              this.list = response.data.records
+              this.isDisabled = false
             }).catch(err => {
                 this.showError = true
                 if (err.response !== undefined) {
@@ -269,8 +270,8 @@ export default {
             data['redcap_csrf_token'] = window.csrf_token
 
             axios.post(window.ajaxURL + '&action=' + window.SAVE_CHARGE, data).then(() => {
-                this.modal.hide()
-                this.loadChargesList()
+
+              this.loadChargesList()
             }).catch(err => {
                 this.showError = true
                 this.isDisabled = false
