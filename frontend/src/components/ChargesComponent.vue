@@ -151,7 +151,7 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="button" :disabled='isDisabled' class="btn btn-primary"
+                            <button type="button" :disabled='isDisabled' data-bs-dismiss="modal" class="btn btn-primary"
                                     @click="this.saveCharge">Save changes
                             </button>
                         </div>
