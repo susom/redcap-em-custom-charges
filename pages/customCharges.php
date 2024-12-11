@@ -12,8 +12,8 @@ try {
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
-    <script src="<?php echo $module->getUrl("frontend/dist/custom_charges_vue.umd.js") ?>"></script>
-    <div id="custom-charges"></div>
+
+    <div id="app"></div>
     <script>
         window.ajaxURL = "<?php echo $module->getUrl('ajax/handle.php') ?>"
         window.csrf_token = "<?=$module->getCSRFToken()?>";
@@ -24,13 +24,14 @@ try {
         window.EDIT_CHARGE = "<?=$module::EDIT_CHARGE?>";
         window.HAS_RMA = "<?=$module->doesProjectHaveRMA()?>";
 
-        window.addEventListener('DOMContentLoaded', function (event) {
-            const componentPromise = window.renderVueComponent(custom_charges_vue, '#custom-charges')
-            componentPromise.then(component => {
-                console.log('component is ready')
-            })
-        })
+        // window.addEventListener('DOMContentLoaded', function (event) {
+        //     const componentPromise = window.renderVueComponent(custom_charges_vue, '#custom-charges')
+        //     componentPromise.then(component => {
+        //         console.log('component is ready')
+        //     })
+        // })
     </script>
+    <script src="<?php echo $module->getUrl("frontend_3/public/js/bundle.js") ?>"></script>
     <?php
 } catch (\Exception $e) {
     ?>
